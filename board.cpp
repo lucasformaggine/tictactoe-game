@@ -14,7 +14,7 @@ char Board::board[3][3] = {
 
 void Board::RunGame() {
     bool run = true;
-    bool gamemode;
+    bool gameMode;
 
     while (run) {
         cout << "Welcome to Tic Tac Toe!" << endl;
@@ -23,12 +23,12 @@ void Board::RunGame() {
         cout << "//////////////" << endl;
         cout << endl;
 
-        int c = 0;
+        int positionCounter = 0;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                c++;
-                cout << c << " ";
+                positionCounter++;
+                cout << positionCounter << " ";
             }
             cout << endl;
         }
@@ -37,9 +37,9 @@ void Board::RunGame() {
         cout << "(1) Player vs Player (PvP)" << endl;
         cout << "(0) Player vs Computer (PvC)" << endl;
 
-        cin >> gamemode;
+        cin >> gameMode;
 
-        if (gamemode == 1) {
+        if (gameMode == 1) {
             PvP pvpGame;
             pvpGame.PlayPvPMode();
         } else {
@@ -69,78 +69,78 @@ void Board::PrintGame() {
 }
 
 int Board::CheckRowAndColumn() {
-    int x_row = 0, o_row = 0;
-    int x_column = 0, o_column = 0;
+    int xRow = 0, oRow = 0;
+    int xColumn = 0, oColumn = 0;
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (Board::board[i][j] == 'X') {
-                x_row++;
+                xRow++;
             }
             else if (Board::board[i][j] == 'O') {
-                o_row++;
+                oRow++;
             }
 
             if (Board::board[j][i] == 'X') {
-                x_column++;
+                xColumn++;
             } else if (Board::board[j][i] == 'O') {
-                o_column++;
+                oColumn++;
             }
         }
 
-        if (x_row == 3 || x_column == 3) {
+        if (xRow == 3 || xColumn == 3) {
             return 1;
-        } else if (o_row == 3 || o_column == 3) {
+        } else if (oRow == 3 || oColumn == 3) {
             return -1;
         } else {
-            x_row = 0;
-            x_column = 0;
-            o_row = 0;
-            o_column = 0;
+            xRow = 0;
+            xColumn = 0;
+            oRow = 0;
+            oColumn = 0;
         }
     }
     return 0;
 }
 
 int Board::CheckPrimaryCorner() {
-    int x_corner = 0, o_corner = 0;
+    int xCorner = 0, oCorner = 0;
 
     for (int j = 0; j < 3; j++) {
         if (Board::board[j][j] == 'X') {
-            x_corner++;
+            xCorner++;
         } else if (Board::board[j][j] == 'O') {
-            o_corner++;
+            oCorner++;
         }
     }
-    if (x_corner == 3) {
+    if (xCorner == 3) {
         return 1;
-    } else if (o_corner == 3) {
+    } else if (oCorner == 3) {
         return -1;
     } else {
-        x_corner = 0;
-        o_corner = 0;
+        xCorner = 0;
+        oCorner = 0;
     }
 
     return 0;
 }
 
 int Board::CheckSecondaryCorner() {
-    int x_corner = 0, o_corner = 0;
+    int xCorner = 0, oCorner = 0;
 
     for (int j = 2; j >= 0; j--) {
         if (Board::board[2 - j][j] == 'X') {
-            x_corner++;
+            xCorner++;
         } else if (Board::board[2 - j][j] == 'O') {
-            o_corner++;
+            oCorner++;
         }
     }
-    if (x_corner == 3) {
+    if (xCorner == 3) {
         return 1;
-    } else if (o_corner == 3) {
+    } else if (oCorner == 3) {
         return -1;
     } else {
-        x_corner = 0;
-        o_corner = 0;
+        xCorner = 0;
+        oCorner = 0;
     }
 
     return 0;
